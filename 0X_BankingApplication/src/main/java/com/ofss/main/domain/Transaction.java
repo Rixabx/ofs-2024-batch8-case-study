@@ -1,11 +1,28 @@
 package com.ofss.main.domain;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
-
+@Entity
+@Table(name = "transaction_details")
 public class Transaction {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "transaction_id")
     private int transactionId;
-    private int accountId;
-    private int receiver;
+	@ManyToOne
+	@JoinColumn(name = "account_id")
+	private Account sender;
+	@ManyToOne
+	@JoinColumn(name = "receiverid")
+	private Account receiver;
     private double amount;
 
 
@@ -13,14 +30,14 @@ public class Transaction {
 
     }
 
-    public Transaction(int transactionId,int accountId){
+    public Transaction(int transactionId,Account sender){
         this.transactionId = transactionId;
-        this.accountId = accountId;
+        this.sender = sender;
 
     }
-    public Transaction(int transactionId, int accountId, int receiver, double amount) {
+    public Transaction(int transactionId, Account sender, Account receiver, double amount) {
         this.transactionId = transactionId;
-        this.accountId = accountId;
+        this.sender = sender;
         this.receiver = receiver;
         this.amount = amount;
     }
@@ -31,16 +48,16 @@ public class Transaction {
     public void setTransactionId(int transactionId) {
         this.transactionId = transactionId;
     }
-    public int getAccountId() {
-        return accountId;
+    public Account getsender() {
+        return sender;
     }
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setsender(Account sender) {
+        this.sender = sender;
     }
-    public int getReceiver() {
+    public Account getReceiver() {
         return receiver;
     }
-    public void setReceiver(int receiver) {
+    public void setReceiver(Account receiver) {
         this.receiver = receiver;
     }
     public double getAmount() {

@@ -1,10 +1,13 @@
 package com.ofss.main.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,23 +17,29 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "account_id")
     private int accountId;
-    private long Customer_id;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customer_id")
+    private Customer customer;
+	@Column(name = "account_type")
     private String accountType;
+	@Column(name = "balance")
     private double balance;
+	@Column(name = "interest_rate")
     private float interest_rate;
 
 
     public Account() {
     }
 
-    public Account(int accountId,String accountType,long Customer_id) {
+    public Account(int accountId,String accountType,Customer customer) {
         this.accountId = accountId;
-        this.Customer_id = Customer_id;
+        this.customer = customer;
         this.accountType = accountType;
     }
-    public Account(int accountId, String accountType, double balance,float interest_rate,long Customer_id) {
+    public Account(int accountId, String accountType, double balance,float interest_rate,Customer customer) {
         this.accountId = accountId;
-        this.Customer_id = Customer_id;
+        this.customer = customer;
         this.accountType = accountType;
         this.balance = balance;
         this.interest_rate = interest_rate;
@@ -55,12 +64,12 @@ public class Account {
         this.accountId = accountId;
     }
 
-    public long getCustomer_id() {
-        return Customer_id;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomer_id(long customer_id) {
-        Customer_id = customer_id;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getAccountType() {
@@ -81,7 +90,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account [accountId=" + accountId + ", customerId=" + Customer_id + ", accountType=" + accountType
+        return "Account [accountId=" + accountId + ", customerId=" + customer + ", accountType=" + accountType
                 + ", balance=" + balance +", interest_rate"+ interest_rate+"]";
     }
 

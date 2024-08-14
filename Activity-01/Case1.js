@@ -12,7 +12,7 @@ const readData = () => {
 
 const Id = readline.question("Id: ");
 const name = readline.question('Name: ');
-const salary = readline.question('Salary: ');
+const salary = readline.questionInt('Salary: ');
 
 const newEmployee = new Employee(Id, name, salary );
 const employees = readData();

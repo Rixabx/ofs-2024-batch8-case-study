@@ -1,0 +1,34 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ 
+<div class="oj-hybrid-padding">
+<div class="login-container">
+  <div class="login-content">
+    <h1>Registration page</h1>
+  <div id="div1">
+  <oj-c-form-layout max-columns="1" direction="column">
+    <oj-c-input-text id="firstName" value="{{inputFirstName}}" label-hint="First Name"></oj-c-input-text>
+    <oj-c-input-text id="lastName" value="{{inputLastName}}" label-hint="Last Name"></oj-c-input-text>
+    <oj-c-input-text id="email" value="{{inputEmail}}" label-hint="Email"></oj-c-input-text>
+    <oj-select-single
+                data="[[browsersDP]]"
+                required="true"
+                label-hint="Gender"
+                ></oj-select-single>
+                
+    <oj-c-input-number id="mobile" value="{{inputMobile}}" label-hint="Mobile Number" min="0" step="1"></oj-c-input-number>
+    <oj-c-input-text id="address" value="{{inputAddress}}" label-hint="Address"></oj-c-input-text>
+    <oj-c-input-text id="pan" value="{{inputPan}}" label-hint="PAN Number"></oj-c-input-text>
+    <oj-c-input-number id="aadhar" value="{{inputAadhar}}" label-hint="Aadhar Number" min="0" step="1"></oj-c-input-number>
+    <oj-c-input-text id="loginId" value="{{inputLoginId}}" label-hint="Login ID"></oj-c-input-text>
+    <oj-c-input-password id="password" value="{{inputPassword}}" label-hint="Password"></oj-c-input-password>
+    <oj-c-input-number id="age" value="{{inputAge}}" label-hint="Age" min="0" step="1"></oj-c-input-number>
+
+    <oj-c-button on-oj-action="[[addRow]]" disabled="[[!isFormValid()]]" label="Submit"></oj-c-button>
+</oj-c-form-layout>
+</div>
+</div></div>
+</div>

@@ -1,0 +1,19 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding" >
+
+
+<!-- ------case study ------ -->
+<div class="login-container">
+  <div class="login-content">
+    <h1>Banking Login</h1>
+            <oj-c-form-layout max-columns="1" direction="column">
+                <oj-c-input-text id="email" value="{{inputEmail}}" label-hint="Email Address" type="email"></oj-c-input-text>
+                <oj-c-input-password id="password" value="{{inputPassword}}" label-hint="Password"></oj-c-input-password>
+                <oj-c-button on-oj-action="[[login]]" label="Login" disabled="[[!isFormValid()]]"></oj-c-button>
+            </oj-c-form-layout> 
+  </div></div>
+</div>

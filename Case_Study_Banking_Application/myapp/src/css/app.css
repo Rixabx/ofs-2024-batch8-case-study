@@ -1,0 +1,181 @@
+/*
+    Document   : override
+    Created on : <date>
+    Author     : <author>
+    Description:
+        This is where any of your application-specific styles should be included
+*/
+
+/* Hidden element off-screen */
+.send-off-screen {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Oracle icon */
+.demo-oracle-icon {
+  width: 137px;
+  height: 18px;
+}
+
+.demo-oracle-icon:before {
+  content: url("images/oracle_logo.svg");
+}
+
+html:not([dir="rtl"]) .demo-oracle-icon {
+  padding-right: 4px;
+}
+
+html[dir="rtl"] .demo-oracle-icon {
+  padding-left: 4px;
+}
+
+.demo-oracle-icon:before {
+  display: inline;
+}
+
+/* App header avatar */
+.demo-appheader-avatar {
+  width: 24px;
+  height: 24px;
+}
+
+.demo-appheader-avatar:before {
+  content: url("images/avatar_24px.png");
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  .demo-appheader-avatar:before {
+    content: url("images/avatar_24px_2x.png");
+    -webkit-transform: translate(-25%, -25%) scale(0.5);
+    transform: translate(-25%, -25%) scale(0.5);
+  }
+}
+
+/* Additional Styles for Modern Look and Feel */
+
+/* General body styling */
+body {
+  font-family: 'Arial', sans-serif; /* Modern font */
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4; /* Light background color */
+}
+
+/* Container and layout */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff; /* White background for contrast */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Login container styling */
+.login-container {
+  width: 100%;
+  max-width: 400px; /* Restrict max width */
+  margin: 50px auto; /* Center container */
+  padding: 20px;
+  background: #fff; /* White background for contrast */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  text-align: center;
+  overflow-y: auto; /* Add scrollbar if content overflows */
+  max-height: 80vh; /* Limit height to viewport height */
+}
+
+/* Login content styling */
+.login-content {
+  margin-top: 20px;
+}
+
+.login-content h1 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333; /* Dark text color */
+}
+
+/* Button styles */
+button {
+  background: #2575fc; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background: #1e60c6; /* Darker shade on hover */
+}
+
+/* Input field styles */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+oj-c-input-text,
+oj-c-input-password,
+oj-c-input-number,
+oj-select-single {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  position: relative; /* Position relative for icon placement */
+}
+
+/* Icon styles */
+input[type="text"]::before,
+input[type="email"]::before,
+input[type="password"]::before,
+oj-c-input-text::before,
+oj-c-input-password::before,
+oj-c-input-number::before,
+oj-select-single::before {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  color: #2575fc; /* Icon color */
+}
+
+/* Styles for focused input fields */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+oj-c-input-text:focus,
+oj-c-input-password:focus,
+oj-c-input-number:focus,
+oj-select-single:focus {
+  border-color: #2575fc; /* Focus border color */
+  outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .header h1 {
+    font-size: 1.5em;
+  }
+
+  button {
+    width: 100%;
+  }
+}

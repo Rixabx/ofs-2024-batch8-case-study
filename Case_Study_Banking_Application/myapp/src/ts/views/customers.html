@@ -1,0 +1,60 @@
+<!--
+ Copyright (c) 2014, 2024, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding">
+  <!-- <h1>Customers Content Area</h1>
+  <div>
+      To change the content of this section, you will make edits to the customers.html file located in the /ts/views folder.
+  </div> -->
+  <!-- Table to display employee records -->
+<!-- <oj-table id="table" data="[[dataprovider]]"
+columns='[
+    {"headerText": "Employee ID", "field": "employeeId"},
+    {"headerText": "First Name", "field": "firstname"},
+    {"headerText": "Last Name", "field": "lastname"},
+    {"headerText": "Salary", "field": "salary"}
+]'>
+</oj-table> -->
+
+<!-- Form for adding and updating employee records -->
+<!-- <oj-c-form-layout max-columns="1" direction="column">
+<div>
+    <oj-c-input-number id="employeeIdInput" label-hint="Employee ID" value="{{inputEmployeeId}}"></oj-c-input-number>
+    <oj-c-input-text id="firstNameInput" label-hint="First Name" value="{{inputFirstName}}"></oj-c-input-text>
+    <oj-c-input-text id="lastNameInput" label-hint="Last Name" value="{{inputLastName}}"></oj-c-input-text>
+    <oj-c-input-number id="salaryInput" label-hint="Salary" value="{{inputSalary}}"></oj-c-input-number>
+</div>
+<div>
+    <oj-c-button id="addButton" on-oj-action="[[addRow]]" disabled="[[disabledAdd]]">Create</oj-c-button>
+    <oj-c-button id="updateButton" on-oj-action="[[updateRow]]" disabled="[[disabledUpdate]]">Update</oj-c-button>
+    <oj-c-button id="removeButton" on-oj-action="[[removeRow]]" disabled="[[disabledRemove]]">Remove</oj-c-button>
+</div>
+</oj-c-form-layout> -->
+<!-- <div id="containerDiv1">
+<oj-c-form-layout max-columns="1" direction="column">
+  <oj-c-input-text id="customerId" value="{{customerId}}" label-hint="Customer ID" type="text"></oj-c-input-text>
+  <oj-c-button on-oj-action="[[fetchAccountData]]" label="Fetch Accounts"></oj-c-button>
+</oj-c-form-layout>
+</div> -->
+<!-- <div id="form-container">
+  <oj-c-form-layout max-columns="2" direction="column">
+      <oj-c-input-text id="accountType" value="{{accountType}}" label-hint="Account Type"></oj-c-input-text>
+      <oj-c-input-number id="balance" value="{{balance}}" label-hint="Balance" min="0" step="1"></oj-c-input-number>
+      <oj-c-button on-oj-action="[[submitForm]]" label="Submit"></oj-c-button>
+  </oj-c-form-layout>
+</div> -->
+<div id="accounts-table-container">
+<oj-table id="table" data="[[dataprovider]]"
+  columns='[
+      {"headerText": "Account ID", "field": "accountId"},
+      {"headerText": "Account Type", "field": "accountType"},
+      {"headerText": "Balance", "field": "balance"}
+  ]'>
+</oj-table>
+</div>
+<div id="logout-button-container">
+  <oj-c-button on-oj-action="[[logout]]" label="Logout"></oj-c-button>
+</div>
+</div>

@@ -38,14 +38,10 @@ columns='[
   <oj-c-button on-oj-action="[[fetchAccountData]]" label="Fetch Accounts"></oj-c-button>
 </oj-c-form-layout>
 </div> -->
-<!-- <div id="form-container">
-  <oj-c-form-layout max-columns="2" direction="column">
-      <oj-c-input-text id="accountType" value="{{accountType}}" label-hint="Account Type"></oj-c-input-text>
-      <oj-c-input-number id="balance" value="{{balance}}" label-hint="Balance" min="0" step="1"></oj-c-input-number>
-      <oj-c-button on-oj-action="[[submitForm]]" label="Submit"></oj-c-button>
-  </oj-c-form-layout>
-</div> -->
+
 <div id="accounts-table-container">
+  <center>
+    <h3>EXISTING ACCOUNT</h3>
 <oj-table id="table" data="[[dataprovider]]"
   columns='[
       {"headerText": "Account ID", "field": "accountId"},
@@ -53,8 +49,22 @@ columns='[
       {"headerText": "Balance", "field": "balance"}
   ]'>
 </oj-table>
+</center>
 </div>
+<div id="form-container">
+  <center>
+    <h3>ADD NEW ACCOUNT</h3>
+  <oj-c-form-layout max-columns="1" direction="column">
+      <oj-c-input-text id="accountType" value="{{accountType}}" label-hint="Account Type"></oj-c-input-text>
+      <oj-c-input-number id="balance" value="{{balance}}" label-hint="Balance" min="0" step="1"></oj-c-input-number>
+      <oj-c-button on-oj-action="[[submitForm]]" label="Submit"></oj-c-button>
+  </oj-c-form-layout>
+</center>
+</div>
+<center>
 <div id="logout-button-container">
   <oj-c-button on-oj-action="[[logout]]" label="Logout"></oj-c-button>
+
 </div>
+</center>
 </div>

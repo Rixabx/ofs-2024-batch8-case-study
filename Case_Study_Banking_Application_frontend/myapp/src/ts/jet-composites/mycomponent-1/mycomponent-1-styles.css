@@ -1,0 +1,22 @@
+/* This file is where css selectors for the component go.
+   There will be hard coded properties and properties controlled by variables, for example
+
+   mycomponent-1 .mycomponent-1-value-text {
+   color: var(--mycomponent-1-value-text-color);
+   display: inline-block;
+	 }
+*/
+
+mycomponent-1:not(.oj-complete){
+  visibility: hidden;
+}
+
+mycomponent-1{
+	min-height: 50px;
+	width: 50px;
+}
+
+mycomponent-1[hidden]
+{
+  display: none;
+}

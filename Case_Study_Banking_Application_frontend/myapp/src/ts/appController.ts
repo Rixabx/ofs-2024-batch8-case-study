@@ -58,14 +58,25 @@ class RootViewModel {
     if (mdQuery){
       this.mdScreen = ResponsiveKnockoutUtils.createMediaQueryObservable(mdQuery);
     }
-
-    const navData = [
+    let navData;
+    if (sessionStorage.length>0){
+       navData = [
+        { path: "", redirect: "dashboard" },
+        { path: "dashboard", detail: { label: "Money Transfer", iconClass: "oj-ux-ico-bar-chart" } },
+        // { path: "incidents", detail: { label: "Login", iconClass: "oj-ux-ico-fire" } },
+        { path: "customers", detail: { label: "Accounts", iconClass: "oj-ux-ico-contact-group" } },
+        // { path: "about", detail: { label: "Registration", iconClass: "oj-ux-ico-information-s" } }
+      ];
+    }
+    else{
+     navData = [
       { path: "", redirect: "dashboard" },
-      { path: "dashboard", detail: { label: "Dashboard", iconClass: "oj-ux-ico-bar-chart" } },
+      // { path: "dashboard", detail: { label: "Dashboard", iconClass: "oj-ux-ico-bar-chart" } },
       { path: "incidents", detail: { label: "Login", iconClass: "oj-ux-ico-fire" } },
-      { path: "customers", detail: { label: "Accounts", iconClass: "oj-ux-ico-contact-group" } },
+      // { path: "customers", detail: { label: "Accounts", iconClass: "oj-ux-ico-contact-group" } },
       { path: "about", detail: { label: "Registration", iconClass: "oj-ux-ico-information-s" } }
     ];
+  }
     // router setup
     const router = new CoreRouter(navData, {
       urlAdapter: new UrlParamAdapter()

@@ -203,25 +203,30 @@ type Account = {
     accountId: number;
     accountType: string;
     balance: number;
+    customer: {
+        customerId: number;
+    };
 };
 
 type Key = Account["accountId"];
 
 class AccountViewModel {
-    // accountType = ko.observable<string>("");
-    // balance = ko.observable<number>(0);
+    accountType = ko.observable<string>("");
+    balance = ko.observable<number>(0);
     dataprovider = ko.observable<RESTDataProvider<any, any> | null>(null);
     keyAttributes = "accountId";
     url = "http://localhost:8080/customerapi/allaccount/";
 
     fetchAccountData = async () => {
-        const id = sessionStorage.getItem('id'); // Get customerId from sessionStorage
-        if (!id) {
-            console.error('No customer ID found in session storage.');
+        const customer = sessionStorage.getItem('id'); // Get customer object from sessionStorage
+        if (!customer) {
+            console.error('No customer data found in session storage.');
             return;
         }
 
-        const fetchUrl = `${this.url}${id}`;
+        const customerData = JSON.parse(customer);
+        const customerId = customerData.customerId;
+        const fetchUrl = `${this.url}${customerId}`;
         const dataProvider = new RESTDataProvider({
             keyAttributes: this.keyAttributes,
             url: fetchUrl,
@@ -244,39 +249,60 @@ class AccountViewModel {
         this.dataprovider(dataProvider);
     };
 
-  //   submitForm = async () => {
-  //     const type = this.accountType().trim();
-  //     const balance = this.balance();
-      
-  //     if (!type || balance <= 0) {
-  //         console.error('Invalid account type or balance.');
-  //         return;
-  //     }
+    submitForm = async () => {
+        const customer = sessionStorage.getItem('id'); // Get customer object from sessionStorage
+        if (!customer) {
+            console.error('No customer data found in session storage.');
+            return;
+        }
 
-  //     // Use PUT method to request accountId based on accountType and balance
-  //     const response = await fetch("http://localhost:8080/customerapi/account", {
-  //         method: 'PUT',
-  //         headers: {
-  //             'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify({ accountType: type, balance: balance }),
-  //     });
+        const customerData = JSON.parse(customer);
+        const customerId = customerData.customerId; // Get customerId from parsed customer object
+        console.log(customerId);
+        const type = this.accountType().trim();
+        const balance = this.balance();
 
-  //     if (!response.ok) {
-  //         console.error('Error fetching accountId.');
-  //         return;
-  //     }
+        if (!customerId || !type || balance <= 0) {
+            console.error('Invalid input values.');
+            return;
+        }
 
-  //     const data = await response.json();
-  //     if (data && data.accountId) {
-  //         sessionStorage.setItem('id1', data.accountId); // Store accountId in sessionStorage
-  //         this.fetchAccountData(); // Fetch data for the account
-  //     } else {
-  //         console.error('Account not found.');
-  //     }
-  // };
+        try {
+            const response = await fetch("http://localhost:8080/customerapi/account", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    accountId: 100,
+                    customer: customerData, // Use customerId from sessionStorage
+                    accountType: type,
+                    balance: balance
+                }),
+            });
+
+            if (!response.ok) {
+                console.error('Error creating or updating account. Status:', response.status);
+                return;
+            }
+
+            const data = await response.json();
+            console.log('Response data:', data);
+
+            if (data && data.accountId) {
+                // sessionStorage.setItem('accountId', data.accountId.toString());
+                // Optionally, you can update the sessionStorage with the new accountId if needed
+                this.fetchAccountData(); // Fetch data for the updated account
+            } else {
+                console.error('Account data not found in response.');
+            }
+        } catch (error) {
+            console.error('Error in POST request:', error);
+        }
+    };
+
     logout = () => {
-        sessionStorage.removeItem('id'); // Clear session storage
+        sessionStorage.removeItem('id'); // Clear customerId from sessionStorage
         window.location.href = 'http://localhost:8000/?ojr=incidents'; // Redirect to login page
     };
 
@@ -288,11 +314,10 @@ class AccountViewModel {
 
 whenDocumentReady().then(() => {
     const viewModel = new AccountViewModel();
-    // ko.applyBindings(viewModel, document.getElementById('form-container'));
+    ko.applyBindings(viewModel, document.getElementById('form-container'));
     ko.applyBindings(viewModel, document.getElementById('accounts-table-container'));
     ko.applyBindings(viewModel, document.getElementById('logout-button-container'));
 });
 
 export = AccountViewModel;
-
 

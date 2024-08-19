@@ -44,7 +44,7 @@ class LoginViewModel {
             if (!response.ok) throw new Error("Network response was not ok.");
             const result = await response.json();
             console.log("Login successful:", result);
-            sessionStorage.setItem("id", result); // Assuming the response contains the customer ID
+            sessionStorage.setItem("id", JSON.stringify(result)); // Assuming the response contains the customer ID
             window.location.href = "http://localhost:8000/?ojr=customers";
         } catch (error) {
             console.error("Error during login:", error);

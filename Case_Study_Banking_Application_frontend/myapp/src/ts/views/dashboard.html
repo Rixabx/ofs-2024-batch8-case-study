@@ -4,7 +4,7 @@
  as shown at https://oss.oracle.com/licenses/upl/
  -->
 <div class="oj-hybrid-padding">
-  <oj-c-form-layout max-columns="1" direction="column">
+  <!-- <oj-c-form-layout max-columns="1" direction="column">
     <h4>Input text demo</h4>
     <div>
       <oj-c-input-text id="text-input" value="{{firstname}}" label-hint="Enter FirstName"
@@ -26,13 +26,13 @@
     <div id="containerDiv">
       <oj-message-banner data="[[messages]]" type="page"></oj-message-banner>
     </div>
-    <h1>button demo</h1>
+    <h1>button demo</h1> -->
     <!-- <div id="buttonc"> -->
-      <oj-c-button id="button2" on-oj-action="[[buttonAction]]" disabled="[[firstname()==null || firstname().trim()==='']]" label="Submit"></oj-c-button>
+      <!-- <oj-c-button id="button2" on-oj-action="[[buttonAction]]" disabled="[[firstname()==null || firstname().trim()==='']]" label="Submit"></oj-c-button> -->
       <!-- <span id="result">
         <oj-bind-text value="[[activatedButton]]"></oj-bind-text>
       </span> -->
-    </div>
+    <!-- </div>
     <div id="progressBarWrapper">
       <oj-c-progress-bar
               class="oj-sm-margin-4x-bottom demo-width"
@@ -104,5 +104,23 @@
       <oj-bind-text value="[[password]]"></oj-bind-text>
       <span><oj-bind-text value="[[value1]]"></oj-bind-text></span>
     </span>
-  </oj-c-form-layout>
+  </oj-c-form-layout> --><center>
+  <div id="transfer-container">
+    <h3>MONEY TRANSFER</h3>
+        <oj-c-form-layout>
+          <div>
+            <oj-c-input-number id="senderAccountId" value="{{senderAccountId}}" label-hint="Sender Account ID"></oj-input-text>
+            </div><div>
+              <oj-c-input-number id="receiverAccountId" value="{{receiverAccountId}}" label-hint="Receiver Account ID"></oj-input-text>
+              </div><div>
+                <oj-c-input-number id="amount" value="{{amount}}" label-hint="Amount"></oj-input-number>
+                </div>
+                  <oj-c-button on-oj-action="{{submitTransfer}}" label="Transfer"></oj-button>
+        </oj-c-form-layout>
+        <div id="transfer-status">
+            <!-- Display status messages here -->
+            <span data-bind="text: transferStatus, style: { color: transferStatus().startsWith('Transaction Successful') ? 'green' : 'red' }"></span>
+        </div>
+    </div>
+  </center>
 </div>
